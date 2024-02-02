@@ -1,8 +1,11 @@
 ## LKD 23-02-2023 MPI MWE                                                                                                                                    
-import numpy as np                                                                                                                                           
-from mpi4py import MPI                                                                                                                                       
+import mpi4py                                                                                                                                                                                                      
+mpi4py.rc.initialize = False                                                                                                                                                                                       
+mpi4py.rc.finalize = False                                                                                                                                                                                                                                                                                                                                                                                   
+from mpi4py import MPI                                                                                                                                            
 import time                                                                                                                                                  
-                                                                                                                                                             
+
+MPI.Init()
 # initialize the MPI threads                                                                                                                                 
 comm = MPI.COMM_WORLD                                                                                                                                        
                                                                                                                                                              
@@ -35,3 +38,5 @@ for x in xs:
                                                                                                                                                              
 if rank==0:                                                                                                                                                  
     print("--- %s seconds ---" % (time.time() - start_time)) 
+
+MPI.Finalize()
